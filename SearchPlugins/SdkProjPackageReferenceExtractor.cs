@@ -49,12 +49,14 @@ namespace AzdoPackageScrape.SearchPlugins
                                 """);
             }
 
+            // If you *don't* want to limit results to the matching frameworks
+            // listed in the _matchingTargetFrameworks field at the top of this
+            // file, comment out the three lines below.
+
             builder.Append(") AND (");
-
-            // add the target frameworks we care about
             builder.Append(string.Join(" OR ", _matchingTargetFrameworks.Select(tf => $"\"<TargetFramework>{tf}\"")));
-
             builder.Append(')');
+
             return builder.ToString();
         }
     }
